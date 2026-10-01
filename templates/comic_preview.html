@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ComicCraft - Comic Preview</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🎨 Your Comic</h1>
+        <p>ComicCraft generated your story</p>
+    </div>
+
+    {% for panel in layout %}
+
+    <div class="card comic-panel">
+
+        <h2>
+            Panel {{ panel.panel_number }}:
+            {{ panel.title }}
+        </h2>
+
+        {% if panel.image_path %}
+
+        <img
+            src="{{ panel.image_path }}"
+            alt="Comic Panel {{ panel.panel_number }}"
+            class="comic-image"
+        >
+
+        {% endif %}
+
+        <div class="panel-text">
+
+            <p>
+                <strong>Caption:</strong>
+                {{ panel.caption }}
+            </p>
+
+            <p>
+                <strong>Narration:</strong>
+                {{ panel.narration }}
+            </p>
+
+            <p>
+                <strong>Dialogue:</strong>
+                {{ panel.dialogue }}
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    <div class="card">
+
+        <h2>📄 Export</h2>
+
+        <p>Your comic PDF is ready.</p>
+
+        <a
+            href="{{ pdf_path }}"
+            target="_blank"
+            class="generate-btn"
+        >
+            Download PDF
+        </a>
+
+        <br><br>
+
+        <a href="/" class="back-link">
+            ← Create Another Comic
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

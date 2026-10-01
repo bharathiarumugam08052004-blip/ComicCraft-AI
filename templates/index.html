@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ComicCraft - AI Comic Creator</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🎨 ComicCraft</h1>
+        <p>AI Comic Story Creator</p>
+    </div>
+
+    <div class="card">
+
+        <h2>Create Your Comic</h2>
+
+        <p class="description">
+            Enter your story idea and let ComicCraft create a five-panel comic.
+        </p>
+
+        {% if error %}
+        <div class="error">
+            <strong>Error:</strong>
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/generate" method="post">
+
+            <div class="form-group">
+                <label for="story_prompt">Story Idea</label>
+
+                <textarea
+                    id="story_prompt"
+                    name="story_prompt"
+                    rows="5"
+                    placeholder="Example: A young hero discovers a magical book in a forest..."
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="character_name">Character Name</label>
+
+                <input
+                    type="text"
+                    id="character_name"
+                    name="character_name"
+                    value="Alex"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="setting">Setting</label>
+
+                <input
+                    type="text"
+                    id="setting"
+                    name="setting"
+                    value="enchanted forest"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="tone">Tone</label>
+
+                <select id="tone" name="tone">
+                    <option value="funny">Funny</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="emotional">Emotional</option>
+                    <option value="inspiring">Inspiring</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="art_style">Art Style</label>
+
+                <select id="art_style" name="art_style">
+                    <option value="comic book">Comic Book</option>
+                    <option value="cartoon">Cartoon</option>
+                    <option value="anime">Anime</option>
+                    <option value="manga">Manga</option>
+                    <option value="watercolor">Watercolor</option>
+                </select>
+            </div>
+
+            <button type="submit" class="generate-btn">
+                ✨ Generate Comic
+            </button>
+
+        </form>
+
+    </div>
+
+    <footer>
+        <p>ComicCraft • AI Comic Story Creator</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
